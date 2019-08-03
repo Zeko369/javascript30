@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+  </head>
+  <body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+    <script>
+      const dogs = [{ name: "Snickers", age: 2 }, { name: "hugo", age: 8 }];
+
+      function makeGreen() {
+        const p = document.querySelector("p");
+        p.style.color = "#BADA55";
+        p.style.fontSize = "50px";
+      }
+
+      // Regular
+      console.log("foo");
+
+      // Interpolated
+      console.log("Hello, %s", "Foobar");
+      console.log(`Hello ${"Foobar"}`);
+
+      // Styled
+      console.log("%cHello Foobar", "font-size: 15px; color: red;");
+
+      // warning!
+      console.warn("Foobar");
+
+      // Error :|
+      console.error("Foobar");
+
+      // Info
+      console.info("Foobar");
+
+      // Testing
+      console.assert(true, "WHAT THE FUCK");
+      console.assert(false, "Ok, this is false");
+
+      // clearing
+      // console.clear();
+
+      // Viewing DOM Elements
+      console.log(document.querySelector("p"));
+      console.dir(document.querySelector("p"));
+
+      console.clear();
+
+      // Grouping together
+      dogs.forEach(item => {
+        console.group(item.name); // also .groupCollapsed (by default closed)
+        console.log(item.name);
+        console.log(item.age);
+        console.groupEnd(item.name);
+      });
+
+      // counting
+      console.count("foo"); // i++ without variables
+      console.count("foo");
+      console.count("foo");
+      console.count("foo");
+      console.count("foo");
+
+      // timing
+      console.time("Fetching");
+      fetch("https://api.github.com/users/Zeko369")
+        .then(data => data.json())
+        .then(data => {
+          console.timeEnd("Fetching");
+          console.log(data);
+        });
+
+      console.table(dogs);
+    </script>
+  </body>
+</html>
